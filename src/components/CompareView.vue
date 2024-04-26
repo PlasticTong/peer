@@ -1,22 +1,46 @@
 <template>
-    <div class="h3">
-      对比视图
+  <div class="h3">
+    对比视图
+    <div>
+      {{ idspee }}
     </div>
+  </div>
 
 
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'ComapareView',
   props: {
     msg: String
   },
+  data(){
+    return {
+            idspee:""
+        };
+  },
   created() {
     let test = window.innerWidth;
     let test2 = window.innerHeight;
-    console.group(test2, test);
+    this.send();
+    // console.group(test2, test);
   },
+  methods: {
+    send() {
+      let that = this;
+      axios.get('/api/getAllSpeech')
+        .then(response => {
+          // console.log(response.data[0].id)
+          that.idspee = response.data;
+        })
+        .catch(function (error) {
+          // 请求失败处理
+          console.log(error);
+        });
+    }
+  }
 }
 </script>
 
@@ -33,6 +57,4 @@ export default {
   padding: 10px;
   /* 定义内边距 */
 }
-
-
 </style>

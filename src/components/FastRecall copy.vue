@@ -15,7 +15,7 @@ export default {
   created() {
     let test = window.innerWidth;
     let test2 = window.innerHeight;
-    console.group(test2, test);
+    // console.group(test2, test);
   },
 }
 </script>
